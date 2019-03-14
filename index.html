@@ -72,7 +72,7 @@
           dist = distance(currentLat,currentLong,selectedLat,selectedLong);}
           if( dist< 1.0)
           {
-              document.getElementById("p2").innerHTML = "You are in the range, distance is :" +dist;
+              document.getElementById("p2").innerHTML = "You are in the range, the distance in Kilometer is :" +dist;
               if(count3 == 0){
                 count3 =1;
                setTimeout(function() {
@@ -85,7 +85,7 @@
                               openInNewTab("https://www.google.com/maps?q="+selectedLat+","+selectedLong); 
 
                 //your code to be executed after 1 second
-              }, 5000); 
+              }, 30000); 
              }
 
           }
@@ -104,6 +104,7 @@
                   if (marker2) {
               // Marker already created - Move it
                   marker2.setPosition(event.latLng);
+
                   selectedLat = event.latLng.lat();
                   selectedLong = event.latLng.lng();
                   document.getElementById("p1").innerHTML = "Longitude Selected is : " + selectedLong +"<br>"+ "Latitude Selected is " + selectedLat;
