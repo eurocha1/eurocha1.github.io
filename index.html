@@ -51,6 +51,7 @@
            currentLong =position.coords.longitude;
 
             if (marker) {
+
               // Marker already created - Move it
               marker.setPosition(newPoint);
             }
@@ -60,6 +61,8 @@
                 position: newPoint,
                 map: map
               });
+              marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
+
             }
 
             // Center the map on the new position
