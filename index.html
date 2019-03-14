@@ -24,6 +24,7 @@
           var currentLong, currentLat;
           var count = 0;
           var count2 = 0;
+          var count3 = 0;
           var marker;
           var marker2;
           var selectedLat,selectedLong;
@@ -69,6 +70,15 @@
           if( dist< 1.0)
           {
               document.getElementById("p2").innerHTML = "You are in the range, distance is :" +dist;
+              if(count3 == 0){
+                count3 =1;
+               setTimeout(function() {
+                              openInNewTab("http://google.com"); 
+
+                //your code to be executed after 1 second
+              }, 2000);
+             }
+
           }
           else
           {
@@ -88,6 +98,7 @@
                   selectedLat = event.latLng.lat();
                   selectedLong = event.latLng.lng();
                   document.getElementById("p1").innerHTML = "Longitude Selected is : " + selectedLong +"<br>"+ "Latitude Selected is " + selectedLat;
+                  count3 =0;
 
                 } 
                 else{
@@ -130,7 +141,12 @@
         
        
       }
-     
+      function openInNewTab(href) {
+        Object.assign(document.createElement('a'), {
+          target: '_blank',
+          href,
+        }).click();
+      }
       function distance(lat1, lon1, lat2, lon2, unit) {
         if ((lat1 == lat2) && (lon1 == lon2)) {
           return 0;
