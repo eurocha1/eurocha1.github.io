@@ -76,10 +76,16 @@
               if(count3 == 0){
                 count3 =1;
                setTimeout(function() {
-                              openInNewTab("http://google.com"); 
+                              openInNewTab("https://www.google.com/maps?q="+selectedLat+","+selectedLong); 
 
                 //your code to be executed after 1 second
-              }, 2000);
+              }, 1000);
+
+              setTimeout(function() {
+                              openInNewTab("https://www.google.com/maps?q="+selectedLat+","+selectedLong); 
+
+                //your code to be executed after 1 second
+              }, 5000); 
              }
 
           }
@@ -179,7 +185,7 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAu1Wz_wTrz2NIqVBqxP5S3bWD03DMuUII&callback=initMap">
     </script>
 <center>
-    <p id="p"><font size="5">Please select one location with your mouse click :D</p>
+    <p id="p">Please select one location with your mouse click :D</p>
 
     <form id="form1">
     <p id="p1"></p>
