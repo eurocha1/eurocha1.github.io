@@ -23,8 +23,11 @@
     <script>
           var currentLong, currentLat;
           var count = 0;
+          var count2 = 0;
           var marker;
           var marker2;
+          var selectedLat,selectedLong;
+          var dist = 99999;
 
 
       // Note: This example requires that you consent to location sharing when
@@ -61,9 +64,19 @@
             // Center the map on the new position
             map.setCenter(newPoint);
           }); 
-
+          if(count2 ==1){
+          dist = distance(currentLat,currentLong,selectedLat,selectedLong);}
+          if( dist< 1.0)
+          {
+              document.getElementById("p2").innerHTML = "You are in the range, distance is :" +dist;
+          }
+          else
+          {
+              document.getElementById("p2").innerHTML = "";
+            
+          }
           // Call the autoUpdate() function every 5 seconds
-          setTimeout(autoUpdate, 5000);
+          setTimeout(autoUpdate, 10000);
         }
         autoUpdate();
 
@@ -72,17 +85,17 @@
                   if (marker2) {
               // Marker already created - Move it
                   marker2.setPosition(event.latLng);
-                  var lat = event.latLng.lat();
-                  var long = event.latLng.lng();
-                  document.getElementById("p1").innerHTML = "Longitude Selected is : " + long + "    Latitude Selected is " + lat;
+                  selectedLat = event.latLng.lat();
+                  selectedLong = event.latLng.lng();
+                  document.getElementById("p1").innerHTML = "Longitude Selected is : " + selectedLong +"<br>"+ "Latitude Selected is " + selectedLat;
 
                 } 
                 else{
 
                    marker2 = new google.maps.Marker({position: event.latLng, map: map}); 
-                  var lat = event.latLng.lat();
-                  var long = event.latLng.lng();
-                  document.getElementById("p1").innerHTML = "Longitude Selected is : " + long + "    Latitude Selected is " + lat;
+                  selectedLat = event.latLng.lat();
+                  selectedLong = event.latLng.lng();
+                  document.getElementById("p1").innerHTML = "Longitude Selected is : " + selectedLong + "<br>"+"Latitude Selected is " + selectedLat;
 
                 }
 
@@ -91,7 +104,7 @@
 
                 });
 
-
+          count2 = 1;
 
      
         // var marker = new google.maps.Marker({
@@ -118,7 +131,27 @@
        
       }
      
-
+      function distance(lat1, lon1, lat2, lon2, unit) {
+        if ((lat1 == lat2) && (lon1 == lon2)) {
+          return 0;
+        }
+        else {
+          var radlat1 = Math.PI * lat1/180;
+          var radlat2 = Math.PI * lat2/180;
+          var theta = lon1-lon2;
+          var radtheta = Math.PI * theta/180;
+          var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+          if (dist > 1) {
+            dist = 1;
+          }
+          dist = Math.acos(dist);
+          dist = dist * 180/Math.PI;
+          dist = dist * 60 * 1.1515;
+          if (unit=="K") { dist = dist * 1.609344 }
+          if (unit=="N") { dist = dist * 0.8684 }
+          return dist;
+        }
+      }
      
     
     </script>
@@ -127,10 +160,11 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAu1Wz_wTrz2NIqVBqxP5S3bWD03DMuUII&callback=initMap">
     </script>
 <center>
+    <p id="p"><font size="5">Please select one location with your mouse click :D</p>
+
     <form id="form1">
     <p id="p1"></p>
-    <p id="p2">Please select one location with your mouse click :D</p>
-
+    <p id="p2"></p>
     </form>    
 </center>
 <script >
