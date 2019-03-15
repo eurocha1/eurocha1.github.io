@@ -41,13 +41,14 @@
           center: {lat: -34.397, lng: 150.644},
           zoom: 16
         });
+
         infoWindow = new google.maps.InfoWindow;
 
       function autoUpdate() {
           navigator.geolocation.getCurrentPosition(function(position) {  
             var newPoint = new google.maps.LatLng(position.coords.latitude, 
                                                   position.coords.longitude);
-          currentLat = position.coords.latitude;
+           currentLat = position.coords.latitude;
            currentLong =position.coords.longitude;
 
             if (marker) {
@@ -76,16 +77,16 @@
               if(count3 == 0){
                 count3 =1;
                setTimeout(function() {
-                              openInNewTab("https://www.google.com/maps?q="+selectedLat+","+selectedLong); 
+                         openInNewTab("https://www.google.com/maps?q="+selectedLat+","+selectedLong); 
 
                 //your code to be executed after 1 second
-              }, 1000);
+              }, 50);
 
               setTimeout(function() {
-                              openInNewTab("https://www.google.com/maps?q="+selectedLat+","+selectedLong); 
+                         codeLatLng(selectedLat,selectedLong);
 
                 //your code to be executed after 1 second
-              }, 30000); 
+              }, 8000); 
              }
 
           }
@@ -95,7 +96,7 @@
             
           }
           // Call the autoUpdate() function every 5 seconds
-          setTimeout(autoUpdate, 10000);
+          setTimeout(autoUpdate, 5000);
         }
         autoUpdate();
 
@@ -116,6 +117,7 @@
                    marker2 = new google.maps.Marker({position: event.latLng, map: map}); 
                   selectedLat = event.latLng.lat();
                   selectedLong = event.latLng.lng();
+
                   document.getElementById("p1").innerHTML = "Longitude Selected is : " + selectedLong + "<br>"+"Latitude Selected is " + selectedLat;
 
                 }
@@ -151,6 +153,26 @@
         
        
       }
+      function codeLatLng(lat, lng) {
+      var geocoder = new google.maps.Geocoder;
+      var latlng = new google.maps.LatLng(lat, lng);
+      geocoder.geocode({
+        'latLng': latlng
+      }, function (results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+          if (results) { 
+                 var address = results[0].formatted_address;
+                 openInNewTab("https://www.yelp.com/search?find_desc=&find_loc=" + address);
+                
+                            //document.getElementById("p3").innerHTML = results[0];
+          } else {
+            alert('No results found');
+          }
+        } else {
+          alert('Geocoder failed due to: ' + status);
+        }
+      });
+    }
       function openInNewTab(href) {
         Object.assign(document.createElement('a'), {
           target: '_blank',
@@ -191,6 +213,8 @@
     <form id="form1">
     <p id="p1"></p>
     <p id="p2"></p>
+    <p id="p3"></p>
+
     </form>    
 </center>
 <script >
