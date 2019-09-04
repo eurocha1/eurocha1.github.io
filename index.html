@@ -24,19 +24,14 @@ var Continent = {"AD":"Europe","AE":"Asia","AF":"Asia","AG":"North America","AI"
         }
         //
         document.getElementById('yourinfo').innerHTML = '<p>Lat/Lon: ' + visitor_lat + ' / ' + visitor_lon + '</p><p>Location: ' + visitor_city + ', ' + visitor_region +', Continent : ' + Cont + ', ' + visitor_country + ' (' + visitor_countrycode + ')</p>';
-        // if
-        // if (window.location.href==="https://eurocha1.github.io") {
-        //     window.location.href = "https://amazon.com";
-        // }
+        
+        if (window.location.href==="https://eurocha1.github.io") {
+            window.location.href = "https://amazon.com";
+        }
     }
     else
     {
         document.getElementById('yourinfo').innerHTML = '<p>Whoops!</p>';
     }
 </script>
-<!DOCTYPE html>
-  <meta charset="utf-8">
-  <title>Redirecting to https://yahooo.com/</title>
-  <meta http-equiv="refresh" content="0; URL=https://yahoo.com/">
-  <link rel="canonical" href="https://yahoo.com/">
 </body>
