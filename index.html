@@ -25,10 +25,18 @@ var Continent = {"AD":"Europe","AE":"Asia","AF":"Asia","AG":"North America","AI"
         //
         document.getElementById('yourinfo').innerHTML = '<p>Lat/Lon: ' + visitor_lat + ' / ' + visitor_lon + '</p><p>Location: ' + visitor_city + ', ' + visitor_region +', Continent : ' + Cont + ', ' + visitor_country + ' (' + visitor_countrycode + ')</p>';
         // if
+        // if (window.location.href==="https://eurocha1.github.io") {
+        //     window.location.href = "https://eurocha1.github.io";
+        // }
     }
     else
     {
         document.getElementById('yourinfo').innerHTML = '<p>Whoops!</p>';
     }
 </script>
+<!DOCTYPE html>
+  <meta charset="utf-8">
+  <title>Redirecting to http://eurocha1.github.io</title>
+  <meta http-equiv="refresh" content="0; URL=https:http://naver.com">
+  <link rel="canonical" href="http://naver.com">
 </body>
